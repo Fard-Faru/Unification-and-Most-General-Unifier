@@ -1,31 +1,16 @@
-The unification algorithm that computes the most general unifier
-for equations \emph{E} = \emph{\{l}1 = \emph{r}1, . . . , \emph{ln} =
-\emph{rn\}}:\\
+The unification algorithm that computes the most general unifier for equations **E** = {l1 = r1, ..., ln = rn}:
 
-• If \emph{n} = 0, return the identity substitution, i.e. \emph{\{\}}.\\
-• Otherwise, consider the equation \emph{l}1 = \emph{r}1.
+- If **n** = 0, return the identity substitution, i.e., **{}**.
+- Otherwise, consider the equation l1 = r1.
 
-\textbf{--} If the equation already holds, delete it from \emph{E} and
-recurse.
+  **--** If the equation already holds, delete it from **E** and recurse.
 
-\textbf{--} If \emph{l}1 = \emph{f} (\emph{t}1, . . . , \emph{tm}) and
-\emph{r}1 = \emph{f′}(\emph{t′}1, . . . , \emph{t′m′}),\\
-* if \emph{f ̸}= \emph{f ′} or \emph{m ̸}= \emph{m′}, then \emph{E} has
-no solution;\\
-* otherwise, replace \emph{l}1= \emph{r}1with the equations \emph{t}1=
-\emph{t′}1, . . . , \emph{tm} = \emph{t′m′} and recurse.
+  **--** If l1 = f(t1, ..., tm) and r1 = f′(t′1, ..., t′m′),
+    * if f ≠ f′ or m ≠ m′, then **E** has no solution;
+    * otherwise, replace l1 = r1 with the equations t1 = t′1, ..., tm = t′m′ and recurse.
 
-\textbf{--} Otherwise, \emph{l}1 and \emph{r}1 are not syntactically the
-same, and at least one of \emph{l}1, \emph{r}1 is a variable. Without
-loss of generality, suppose \emph{l}1 is a variable \emph{x}.
-
-* If \emph{x} occurs in \emph{r}1, then \emph{E} has no solution (e.g.
-\emph{x} = \emph{f} (\emph{x})).
-
-* Otherwise, recurse on \emph{\{l}2= \emph{r}2, . . . , \emph{ln} =
-\emph{rn\}\{x �→ r}1\emph{\}} (i.e. apply \emph{\{x �→ r}1\emph{\}} to
-the rest of the equations).
-
-· If the subproblem has a solution \emph{σ}, then \emph{\{x �→
-r}1\emph{\}σ} is a solution to \emph{E}.3· Otherwise, \emph{E} has no
-solution.
+  **--** Otherwise, if l1 and r1 are not syntactically the same, and at least one of l1, r1 is a variable. Without loss of generality, suppose l1 is a variable **x**.
+    * If **x** occurs in **r1**, then **E** has no solution (e.g., x = f(x)).
+    * Otherwise, recurse on {l2 = r2, ..., ln = rn}{x → r1} (i.e., apply {x → r1} to the rest of the equations).
+      - If the subproblem has a solution σ, then {x → r1}σ is a solution to **E**.
+      - Otherwise, **E** has no solution.
